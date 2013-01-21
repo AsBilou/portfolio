@@ -1,4 +1,13 @@
 {%extends 'layout/base.twig'%}
+{%block header%}
+    {%include 'template/header.twig'%}
+{%endblock%}
+{%block menu%}
+    {%include 'template/menu.twig'%}
+{%endblock%}
 {%block content%}
-    Hello world !
+    {{texte}}
+{%endblock%}
+{%block footer%}
+    {%include 'template/footer.twig'%}
 {%endblock%}
