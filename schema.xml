@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="site_name" defaultIdMethod="native">
+    <table name="site_name_table" phpName="SiteNameTable">
+        <column name="" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="" type="varchar" size="255" required="true" />
+        <foreign-key phpName="" refPhpName="" foreignTable="" onDelete="CASCADE">
+            <reference local="" foreign=""/>
+        </foreign-key>
+    </table>
+</database>
