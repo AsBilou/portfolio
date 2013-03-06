@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<database name="site_name" defaultIdMethod="native">
-    <table name="site_name_table" phpName="SiteNameTable">
-        <column name="" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
-        <column name="" type="varchar" size="255" required="true" />
-        <foreign-key phpName="" refPhpName="" foreignTable="" onDelete="CASCADE">
-            <reference local="" foreign=""/>
+<database name="portfolio" defaultIdMethod="native">
+    <table name="portfolio_article" phpName="PortfolioArticle">
+        <column name="idArticle" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="nom" type="varchar" size="45" required="true" />
+        <column name="type" type="varchar" size="45" required="true" />
+        <column name="language" type="varchar" size="45" required="true" />
+        <column name="materiel" type="varchar" size="45" required="true" />
+        <column name="description" type="varchar" size="1000" required="true" />
+        <column name="documentation" type="varchar" size="45" required="true" />
+        <column name="access" type="varchar" size="45" />
+        <column name="categorie" type="integer" required="true" />
+        <column name="img" type="varchar" size="45"/>
+        <foreign-key phpName="article_categorie" foreignTable="portfolio_categorie" onDelete="CASCADE">
+            <reference local="categorie" foreign="id"/>
         </foreign-key>
+    </table>
+    <table name="portfolio_categorie" phpName="PortfolioCategorie">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="nom" type="varchar" size="45" required="true" />
     </table>
 </database>
