@@ -30,10 +30,10 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
     protected $startCopy = false;
 
     /**
-     * The value for the idarticle field.
+     * The value for the id field.
      * @var        int
      */
-    protected $idarticle;
+    protected $id;
 
     /**
      * The value for the nom field.
@@ -115,13 +115,13 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
     protected $alreadyInClearAllReferencesDeep = false;
 
     /**
-     * Get the [idarticle] column value.
+     * Get the [id] column value.
      *
      * @return int
      */
-    public function getIdarticle()
+    public function getId()
     {
-        return $this->idarticle;
+        return $this->id;
     }
 
     /**
@@ -215,25 +215,25 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
     }
 
     /**
-     * Set the value of [idarticle] column.
+     * Set the value of [id] column.
      *
      * @param int $v new value
      * @return PortfolioArticle The current object (for fluent API support)
      */
-    public function setIdarticle($v)
+    public function setId($v)
     {
         if ($v !== null && is_numeric($v)) {
             $v = (int) $v;
         }
 
-        if ($this->idarticle !== $v) {
-            $this->idarticle = $v;
-            $this->modifiedColumns[] = PortfolioArticlePeer::IDARTICLE;
+        if ($this->id !== $v) {
+            $this->id = $v;
+            $this->modifiedColumns[] = PortfolioArticlePeer::ID;
         }
 
 
         return $this;
-    } // setIdarticle()
+    } // setId()
 
     /**
      * Set the value of [nom] column.
@@ -460,7 +460,7 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
     {
         try {
 
-            $this->idarticle = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
+            $this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
             $this->nom = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
             $this->type = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
             $this->language = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
@@ -700,14 +700,14 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
         $modifiedColumns = array();
         $index = 0;
 
-        $this->modifiedColumns[] = PortfolioArticlePeer::IDARTICLE;
-        if (null !== $this->idarticle) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key (' . PortfolioArticlePeer::IDARTICLE . ')');
+        $this->modifiedColumns[] = PortfolioArticlePeer::ID;
+        if (null !== $this->id) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key (' . PortfolioArticlePeer::ID . ')');
         }
 
          // check the columns in natural order for more readable SQL queries
-        if ($this->isColumnModified(PortfolioArticlePeer::IDARTICLE)) {
-            $modifiedColumns[':p' . $index++]  = '`idArticle`';
+        if ($this->isColumnModified(PortfolioArticlePeer::ID)) {
+            $modifiedColumns[':p' . $index++]  = '`id`';
         }
         if ($this->isColumnModified(PortfolioArticlePeer::NOM)) {
             $modifiedColumns[':p' . $index++]  = '`nom`';
@@ -747,8 +747,8 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`idArticle`':
-                        $stmt->bindValue($identifier, $this->idarticle, PDO::PARAM_INT);
+                    case '`id`':
+                        $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
                     case '`nom`':
                         $stmt->bindValue($identifier, $this->nom, PDO::PARAM_STR);
@@ -790,7 +790,7 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
         } catch (Exception $e) {
             throw new PropelException('Unable to get autoincrement id.', $e);
         }
-        $this->setIdarticle($pk);
+        $this->setId($pk);
 
         $this->setNew(false);
     }
@@ -924,7 +924,7 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
     {
         switch ($pos) {
             case 0:
-                return $this->getIdarticle();
+                return $this->getId();
                 break;
             case 1:
                 return $this->getNom();
@@ -982,7 +982,7 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
         $alreadyDumpedObjects['PortfolioArticle'][$this->getPrimaryKey()] = true;
         $keys = PortfolioArticlePeer::getFieldNames($keyType);
         $result = array(
-            $keys[0] => $this->getIdarticle(),
+            $keys[0] => $this->getId(),
             $keys[1] => $this->getNom(),
             $keys[2] => $this->getType(),
             $keys[3] => $this->getLanguage(),
@@ -1032,7 +1032,7 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
     {
         switch ($pos) {
             case 0:
-                $this->setIdarticle($value);
+                $this->setId($value);
                 break;
             case 1:
                 $this->setNom($value);
@@ -1085,7 +1085,7 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
     {
         $keys = PortfolioArticlePeer::getFieldNames($keyType);
 
-        if (array_key_exists($keys[0], $arr)) $this->setIdarticle($arr[$keys[0]]);
+        if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setNom($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setType($arr[$keys[2]]);
         if (array_key_exists($keys[3], $arr)) $this->setLanguage($arr[$keys[3]]);
@@ -1106,7 +1106,7 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
     {
         $criteria = new Criteria(PortfolioArticlePeer::DATABASE_NAME);
 
-        if ($this->isColumnModified(PortfolioArticlePeer::IDARTICLE)) $criteria->add(PortfolioArticlePeer::IDARTICLE, $this->idarticle);
+        if ($this->isColumnModified(PortfolioArticlePeer::ID)) $criteria->add(PortfolioArticlePeer::ID, $this->id);
         if ($this->isColumnModified(PortfolioArticlePeer::NOM)) $criteria->add(PortfolioArticlePeer::NOM, $this->nom);
         if ($this->isColumnModified(PortfolioArticlePeer::TYPE)) $criteria->add(PortfolioArticlePeer::TYPE, $this->type);
         if ($this->isColumnModified(PortfolioArticlePeer::LANGUAGE)) $criteria->add(PortfolioArticlePeer::LANGUAGE, $this->language);
@@ -1131,7 +1131,7 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
     public function buildPkeyCriteria()
     {
         $criteria = new Criteria(PortfolioArticlePeer::DATABASE_NAME);
-        $criteria->add(PortfolioArticlePeer::IDARTICLE, $this->idarticle);
+        $criteria->add(PortfolioArticlePeer::ID, $this->id);
 
         return $criteria;
     }
@@ -1142,18 +1142,18 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
      */
     public function getPrimaryKey()
     {
-        return $this->getIdarticle();
+        return $this->getId();
     }
 
     /**
-     * Generic method to set the primary key (idarticle column).
+     * Generic method to set the primary key (id column).
      *
      * @param  int $key Primary key.
      * @return void
      */
     public function setPrimaryKey($key)
     {
-        $this->setIdarticle($key);
+        $this->setId($key);
     }
 
     /**
@@ -1163,7 +1163,7 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
     public function isPrimaryKeyNull()
     {
 
-        return null === $this->getIdarticle();
+        return null === $this->getId();
     }
 
     /**
@@ -1202,7 +1202,7 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
 
         if ($makeNew) {
             $copyObj->setNew(true);
-            $copyObj->setIdarticle(NULL); // this is a auto-increment column, so set to default value
+            $copyObj->setId(NULL); // this is a auto-increment column, so set to default value
         }
     }
 
@@ -1303,7 +1303,7 @@ abstract class BasePortfolioArticle extends BaseObject implements Persistent
      */
     public function clear()
     {
-        $this->idarticle = null;
+        $this->id = null;
         $this->nom = null;
         $this->type = null;
         $this->language = null;

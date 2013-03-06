@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS `portfolio_article`;
 
 CREATE TABLE `portfolio_article`
 (
-    `idArticle` INTEGER NOT NULL AUTO_INCREMENT,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `nom` VARCHAR(45) NOT NULL,
     `type` VARCHAR(45) NOT NULL,
     `language` VARCHAR(45) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE `portfolio_article`
     `access` VARCHAR(45),
     `categorie` INTEGER NOT NULL,
     `img` VARCHAR(45),
-    PRIMARY KEY (`idArticle`),
+    PRIMARY KEY (`id`),
     INDEX `portfolio_article_FI_1` (`categorie`)
 ) ENGINE=MyISAM;
 

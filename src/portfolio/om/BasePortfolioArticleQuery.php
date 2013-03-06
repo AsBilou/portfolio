@@ -6,7 +6,7 @@
  *
  *
  *
- * @method PortfolioArticleQuery orderByIdarticle($order = Criteria::ASC) Order by the idArticle column
+ * @method PortfolioArticleQuery orderById($order = Criteria::ASC) Order by the id column
  * @method PortfolioArticleQuery orderByNom($order = Criteria::ASC) Order by the nom column
  * @method PortfolioArticleQuery orderByType($order = Criteria::ASC) Order by the type column
  * @method PortfolioArticleQuery orderByLanguage($order = Criteria::ASC) Order by the language column
@@ -17,7 +17,7 @@
  * @method PortfolioArticleQuery orderByCategorie($order = Criteria::ASC) Order by the categorie column
  * @method PortfolioArticleQuery orderByImg($order = Criteria::ASC) Order by the img column
  *
- * @method PortfolioArticleQuery groupByIdarticle() Group by the idArticle column
+ * @method PortfolioArticleQuery groupById() Group by the id column
  * @method PortfolioArticleQuery groupByNom() Group by the nom column
  * @method PortfolioArticleQuery groupByType() Group by the type column
  * @method PortfolioArticleQuery groupByLanguage() Group by the language column
@@ -49,7 +49,7 @@
  * @method PortfolioArticle findOneByCategorie(int $categorie) Return the first PortfolioArticle filtered by the categorie column
  * @method PortfolioArticle findOneByImg(string $img) Return the first PortfolioArticle filtered by the img column
  *
- * @method array findByIdarticle(int $idArticle) Return PortfolioArticle objects filtered by the idArticle column
+ * @method array findById(int $id) Return PortfolioArticle objects filtered by the id column
  * @method array findByNom(string $nom) Return PortfolioArticle objects filtered by the nom column
  * @method array findByType(string $type) Return PortfolioArticle objects filtered by the type column
  * @method array findByLanguage(string $language) Return PortfolioArticle objects filtered by the language column
@@ -145,7 +145,7 @@ abstract class BasePortfolioArticleQuery extends ModelCriteria
      * @return                 PortfolioArticle A model object, or null if the key is not found
      * @throws PropelException
      */
-     public function findOneByIdarticle($key, $con = null)
+     public function findOneById($key, $con = null)
      {
         return $this->findPk($key, $con);
      }
@@ -162,7 +162,7 @@ abstract class BasePortfolioArticleQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `idArticle`, `nom`, `type`, `language`, `materiel`, `description`, `documentation`, `access`, `categorie`, `img` FROM `portfolio_article` WHERE `idArticle` = :p0';
+        $sql = 'SELECT `id`, `nom`, `type`, `language`, `materiel`, `description`, `documentation`, `access`, `categorie`, `img` FROM `portfolio_article` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -235,7 +235,7 @@ abstract class BasePortfolioArticleQuery extends ModelCriteria
     public function filterByPrimaryKey($key)
     {
 
-        return $this->addUsingAlias(PortfolioArticlePeer::IDARTICLE, $key, Criteria::EQUAL);
+        return $this->addUsingAlias(PortfolioArticlePeer::ID, $key, Criteria::EQUAL);
     }
 
     /**
@@ -248,21 +248,21 @@ abstract class BasePortfolioArticleQuery extends ModelCriteria
     public function filterByPrimaryKeys($keys)
     {
 
-        return $this->addUsingAlias(PortfolioArticlePeer::IDARTICLE, $keys, Criteria::IN);
+        return $this->addUsingAlias(PortfolioArticlePeer::ID, $keys, Criteria::IN);
     }
 
     /**
-     * Filter the query on the idArticle column
+     * Filter the query on the id column
      *
      * Example usage:
      * <code>
-     * $query->filterByIdarticle(1234); // WHERE idArticle = 1234
-     * $query->filterByIdarticle(array(12, 34)); // WHERE idArticle IN (12, 34)
-     * $query->filterByIdarticle(array('min' => 12)); // WHERE idArticle >= 12
-     * $query->filterByIdarticle(array('max' => 12)); // WHERE idArticle <= 12
+     * $query->filterById(1234); // WHERE id = 1234
+     * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
+     * $query->filterById(array('min' => 12)); // WHERE id >= 12
+     * $query->filterById(array('max' => 12)); // WHERE id <= 12
      * </code>
      *
-     * @param     mixed $idarticle The value to use as filter.
+     * @param     mixed $id The value to use as filter.
      *              Use scalar values for equality.
      *              Use array values for in_array() equivalent.
      *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
@@ -270,16 +270,16 @@ abstract class BasePortfolioArticleQuery extends ModelCriteria
      *
      * @return PortfolioArticleQuery The current query, for fluid interface
      */
-    public function filterByIdarticle($idarticle = null, $comparison = null)
+    public function filterById($id = null, $comparison = null)
     {
-        if (is_array($idarticle)) {
+        if (is_array($id)) {
             $useMinMax = false;
-            if (isset($idarticle['min'])) {
-                $this->addUsingAlias(PortfolioArticlePeer::IDARTICLE, $idarticle['min'], Criteria::GREATER_EQUAL);
+            if (isset($id['min'])) {
+                $this->addUsingAlias(PortfolioArticlePeer::ID, $id['min'], Criteria::GREATER_EQUAL);
                 $useMinMax = true;
             }
-            if (isset($idarticle['max'])) {
-                $this->addUsingAlias(PortfolioArticlePeer::IDARTICLE, $idarticle['max'], Criteria::LESS_EQUAL);
+            if (isset($id['max'])) {
+                $this->addUsingAlias(PortfolioArticlePeer::ID, $id['max'], Criteria::LESS_EQUAL);
                 $useMinMax = true;
             }
             if ($useMinMax) {
@@ -290,7 +290,7 @@ abstract class BasePortfolioArticleQuery extends ModelCriteria
             }
         }
 
-        return $this->addUsingAlias(PortfolioArticlePeer::IDARTICLE, $idarticle, $comparison);
+        return $this->addUsingAlias(PortfolioArticlePeer::ID, $id, $comparison);
     }
 
     /**
@@ -655,7 +655,7 @@ abstract class BasePortfolioArticleQuery extends ModelCriteria
     public function prune($portfolioArticle = null)
     {
         if ($portfolioArticle) {
-            $this->addUsingAlias(PortfolioArticlePeer::IDARTICLE, $portfolioArticle->getIdarticle(), Criteria::NOT_EQUAL);
+            $this->addUsingAlias(PortfolioArticlePeer::ID, $portfolioArticle->getId(), Criteria::NOT_EQUAL);
         }
 
         return $this;

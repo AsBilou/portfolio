@@ -32,8 +32,8 @@ abstract class BasePortfolioArticlePeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 10;
 
-    /** the column name for the idArticle field */
-    const IDARTICLE = 'portfolio_article.idArticle';
+    /** the column name for the id field */
+    const ID = 'portfolio_article.id';
 
     /** the column name for the nom field */
     const NOM = 'portfolio_article.nom';
@@ -81,11 +81,11 @@ abstract class BasePortfolioArticlePeer
      * e.g. PortfolioArticlePeer::$fieldNames[PortfolioArticlePeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Idarticle', 'Nom', 'Type', 'Language', 'Materiel', 'Description', 'Documentation', 'Access', 'Categorie', 'Img', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('idarticle', 'nom', 'type', 'language', 'materiel', 'description', 'documentation', 'access', 'categorie', 'img', ),
-        BasePeer::TYPE_COLNAME => array (PortfolioArticlePeer::IDARTICLE, PortfolioArticlePeer::NOM, PortfolioArticlePeer::TYPE, PortfolioArticlePeer::LANGUAGE, PortfolioArticlePeer::MATERIEL, PortfolioArticlePeer::DESCRIPTION, PortfolioArticlePeer::DOCUMENTATION, PortfolioArticlePeer::ACCESS, PortfolioArticlePeer::CATEGORIE, PortfolioArticlePeer::IMG, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('IDARTICLE', 'NOM', 'TYPE', 'LANGUAGE', 'MATERIEL', 'DESCRIPTION', 'DOCUMENTATION', 'ACCESS', 'CATEGORIE', 'IMG', ),
-        BasePeer::TYPE_FIELDNAME => array ('idArticle', 'nom', 'type', 'language', 'materiel', 'description', 'documentation', 'access', 'categorie', 'img', ),
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Nom', 'Type', 'Language', 'Materiel', 'Description', 'Documentation', 'Access', 'Categorie', 'Img', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'nom', 'type', 'language', 'materiel', 'description', 'documentation', 'access', 'categorie', 'img', ),
+        BasePeer::TYPE_COLNAME => array (PortfolioArticlePeer::ID, PortfolioArticlePeer::NOM, PortfolioArticlePeer::TYPE, PortfolioArticlePeer::LANGUAGE, PortfolioArticlePeer::MATERIEL, PortfolioArticlePeer::DESCRIPTION, PortfolioArticlePeer::DOCUMENTATION, PortfolioArticlePeer::ACCESS, PortfolioArticlePeer::CATEGORIE, PortfolioArticlePeer::IMG, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NOM', 'TYPE', 'LANGUAGE', 'MATERIEL', 'DESCRIPTION', 'DOCUMENTATION', 'ACCESS', 'CATEGORIE', 'IMG', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'nom', 'type', 'language', 'materiel', 'description', 'documentation', 'access', 'categorie', 'img', ),
         BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
     );
 
@@ -96,11 +96,11 @@ abstract class BasePortfolioArticlePeer
      * e.g. PortfolioArticlePeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Idarticle' => 0, 'Nom' => 1, 'Type' => 2, 'Language' => 3, 'Materiel' => 4, 'Description' => 5, 'Documentation' => 6, 'Access' => 7, 'Categorie' => 8, 'Img' => 9, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('idarticle' => 0, 'nom' => 1, 'type' => 2, 'language' => 3, 'materiel' => 4, 'description' => 5, 'documentation' => 6, 'access' => 7, 'categorie' => 8, 'img' => 9, ),
-        BasePeer::TYPE_COLNAME => array (PortfolioArticlePeer::IDARTICLE => 0, PortfolioArticlePeer::NOM => 1, PortfolioArticlePeer::TYPE => 2, PortfolioArticlePeer::LANGUAGE => 3, PortfolioArticlePeer::MATERIEL => 4, PortfolioArticlePeer::DESCRIPTION => 5, PortfolioArticlePeer::DOCUMENTATION => 6, PortfolioArticlePeer::ACCESS => 7, PortfolioArticlePeer::CATEGORIE => 8, PortfolioArticlePeer::IMG => 9, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('IDARTICLE' => 0, 'NOM' => 1, 'TYPE' => 2, 'LANGUAGE' => 3, 'MATERIEL' => 4, 'DESCRIPTION' => 5, 'DOCUMENTATION' => 6, 'ACCESS' => 7, 'CATEGORIE' => 8, 'IMG' => 9, ),
-        BasePeer::TYPE_FIELDNAME => array ('idArticle' => 0, 'nom' => 1, 'type' => 2, 'language' => 3, 'materiel' => 4, 'description' => 5, 'documentation' => 6, 'access' => 7, 'categorie' => 8, 'img' => 9, ),
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nom' => 1, 'Type' => 2, 'Language' => 3, 'Materiel' => 4, 'Description' => 5, 'Documentation' => 6, 'Access' => 7, 'Categorie' => 8, 'Img' => 9, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'nom' => 1, 'type' => 2, 'language' => 3, 'materiel' => 4, 'description' => 5, 'documentation' => 6, 'access' => 7, 'categorie' => 8, 'img' => 9, ),
+        BasePeer::TYPE_COLNAME => array (PortfolioArticlePeer::ID => 0, PortfolioArticlePeer::NOM => 1, PortfolioArticlePeer::TYPE => 2, PortfolioArticlePeer::LANGUAGE => 3, PortfolioArticlePeer::MATERIEL => 4, PortfolioArticlePeer::DESCRIPTION => 5, PortfolioArticlePeer::DOCUMENTATION => 6, PortfolioArticlePeer::ACCESS => 7, PortfolioArticlePeer::CATEGORIE => 8, PortfolioArticlePeer::IMG => 9, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NOM' => 1, 'TYPE' => 2, 'LANGUAGE' => 3, 'MATERIEL' => 4, 'DESCRIPTION' => 5, 'DOCUMENTATION' => 6, 'ACCESS' => 7, 'CATEGORIE' => 8, 'IMG' => 9, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nom' => 1, 'type' => 2, 'language' => 3, 'materiel' => 4, 'description' => 5, 'documentation' => 6, 'access' => 7, 'categorie' => 8, 'img' => 9, ),
         BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
     );
 
@@ -175,7 +175,7 @@ abstract class BasePortfolioArticlePeer
     public static function addSelectColumns(Criteria $criteria, $alias = null)
     {
         if (null === $alias) {
-            $criteria->addSelectColumn(PortfolioArticlePeer::IDARTICLE);
+            $criteria->addSelectColumn(PortfolioArticlePeer::ID);
             $criteria->addSelectColumn(PortfolioArticlePeer::NOM);
             $criteria->addSelectColumn(PortfolioArticlePeer::TYPE);
             $criteria->addSelectColumn(PortfolioArticlePeer::LANGUAGE);
@@ -186,7 +186,7 @@ abstract class BasePortfolioArticlePeer
             $criteria->addSelectColumn(PortfolioArticlePeer::CATEGORIE);
             $criteria->addSelectColumn(PortfolioArticlePeer::IMG);
         } else {
-            $criteria->addSelectColumn($alias . '.idArticle');
+            $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.nom');
             $criteria->addSelectColumn($alias . '.type');
             $criteria->addSelectColumn($alias . '.language');
@@ -322,7 +322,7 @@ abstract class BasePortfolioArticlePeer
     {
         if (Propel::isInstancePoolingEnabled()) {
             if ($key === null) {
-                $key = (string) $obj->getIdarticle();
+                $key = (string) $obj->getId();
             } // if key === null
             PortfolioArticlePeer::$instances[$key] = $obj;
         }
@@ -345,7 +345,7 @@ abstract class BasePortfolioArticlePeer
     {
         if (Propel::isInstancePoolingEnabled() && $value !== null) {
             if (is_object($value) && $value instanceof PortfolioArticle) {
-                $key = (string) $value->getIdarticle();
+                $key = (string) $value->getId();
             } elseif (is_scalar($value)) {
                 // assume we've been passed a primary key
                 $key = (string) $value;
@@ -791,8 +791,8 @@ abstract class BasePortfolioArticlePeer
             $criteria = $values->buildCriteria(); // build Criteria from PortfolioArticle object
         }
 
-        if ($criteria->containsKey(PortfolioArticlePeer::IDARTICLE) && $criteria->keyContainsValue(PortfolioArticlePeer::IDARTICLE) ) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key ('.PortfolioArticlePeer::IDARTICLE.')');
+        if ($criteria->containsKey(PortfolioArticlePeer::ID) && $criteria->keyContainsValue(PortfolioArticlePeer::ID) ) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key ('.PortfolioArticlePeer::ID.')');
         }
 
 
@@ -833,10 +833,10 @@ abstract class BasePortfolioArticlePeer
         if ($values instanceof Criteria) {
             $criteria = clone $values; // rename for clarity
 
-            $comparison = $criteria->getComparison(PortfolioArticlePeer::IDARTICLE);
-            $value = $criteria->remove(PortfolioArticlePeer::IDARTICLE);
+            $comparison = $criteria->getComparison(PortfolioArticlePeer::ID);
+            $value = $criteria->remove(PortfolioArticlePeer::ID);
             if ($value) {
-                $selectCriteria->add(PortfolioArticlePeer::IDARTICLE, $value, $comparison);
+                $selectCriteria->add(PortfolioArticlePeer::ID, $value, $comparison);
             } else {
                 $selectCriteria->setPrimaryTableName(PortfolioArticlePeer::TABLE_NAME);
             }
@@ -915,7 +915,7 @@ abstract class BasePortfolioArticlePeer
             $criteria = $values->buildPkeyCriteria();
         } else { // it's a primary key, or an array of pks
             $criteria = new Criteria(PortfolioArticlePeer::DATABASE_NAME);
-            $criteria->add(PortfolioArticlePeer::IDARTICLE, (array) $values, Criteria::IN);
+            $criteria->add(PortfolioArticlePeer::ID, (array) $values, Criteria::IN);
             // invalidate the cache for this object(s)
             foreach ((array) $values as $singleval) {
                 PortfolioArticlePeer::removeInstanceFromPool($singleval);
@@ -999,7 +999,7 @@ abstract class BasePortfolioArticlePeer
         }
 
         $criteria = new Criteria(PortfolioArticlePeer::DATABASE_NAME);
-        $criteria->add(PortfolioArticlePeer::IDARTICLE, $pk);
+        $criteria->add(PortfolioArticlePeer::ID, $pk);
 
         $v = PortfolioArticlePeer::doSelect($criteria, $con);
 
@@ -1026,7 +1026,7 @@ abstract class BasePortfolioArticlePeer
             $objs = array();
         } else {
             $criteria = new Criteria(PortfolioArticlePeer::DATABASE_NAME);
-            $criteria->add(PortfolioArticlePeer::IDARTICLE, $pks, Criteria::IN);
+            $criteria->add(PortfolioArticlePeer::ID, $pks, Criteria::IN);
             $objs = PortfolioArticlePeer::doSelect($criteria, $con);
         }
 

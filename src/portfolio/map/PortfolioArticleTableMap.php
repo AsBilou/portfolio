@@ -38,7 +38,7 @@ class PortfolioArticleTableMap extends TableMap
         $this->setPackage('portfolio');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('idArticle', 'Idarticle', 'INTEGER', true, null, null);
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('nom', 'Nom', 'VARCHAR', true, 45, null);
         $this->addColumn('type', 'Type', 'VARCHAR', true, 45, null);
         $this->addColumn('language', 'Language', 'VARCHAR', true, 45, null);

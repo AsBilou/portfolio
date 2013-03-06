@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database name="portfolio" defaultIdMethod="native">
     <table name="portfolio_article" phpName="PortfolioArticle">
-        <column name="idArticle" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="nom" type="varchar" size="45" required="true" />
         <column name="type" type="varchar" size="45" required="true" />
         <column name="language" type="varchar" size="45" required="true" />
