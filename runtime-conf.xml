@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <propel>
-        <datasources default="site_name">
-            <datasource id="site_name">
+        <datasources default="portfolio">
+            <datasource id="portfolio">
                 <adapter>mysql</adapter>
                 <connection>
-                    <dsn>mysql:host=127.0.0.1;dbname=site_name</dsn>
+                    <dsn>mysql:host=127.0.0.1;dbname=portfolio</dsn>
                     <user>root</user>
                     <password>root</password>
                 </connection>

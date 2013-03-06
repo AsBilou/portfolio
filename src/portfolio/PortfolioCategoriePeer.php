@@ -11,8 +11,8 @@
  * application requirements.  This class will only be generated as
  * long as it does not already exist in the output directory.
  *
- * @package    propel.generator.site_name
+ * @package    propel.generator.portfolio
  */
-class PortfolioCategorieQuery extends BasePortfolioCategorieQuery
+class PortfolioCategoriePeer extends BasePortfolioCategoriePeer
 {
 }

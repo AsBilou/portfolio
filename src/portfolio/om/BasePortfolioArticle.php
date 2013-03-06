@@ -6,7 +6,7 @@
  *
  *
  *
- * @package    propel.generator.site_name.om
+ * @package    propel.generator.portfolio.om
  */
 abstract class BasePortfolioArticle extends BaseObject implements Persistent
 {

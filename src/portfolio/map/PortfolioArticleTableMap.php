@@ -12,7 +12,7 @@
  * ORDER BY clause to know whether it needs to apply SQL to make the ORDER BY case-insensitive
  * (i.e. if it's a text column type).
  *
- * @package    propel.generator.site_name.map
+ * @package    propel.generator.portfolio.map
  */
 class PortfolioArticleTableMap extends TableMap
 {
@@ -20,7 +20,7 @@ class PortfolioArticleTableMap extends TableMap
     /**
      * The (dot-path) name of this class
      */
-    const CLASS_NAME = 'site_name.map.PortfolioArticleTableMap';
+    const CLASS_NAME = 'portfolio.map.PortfolioArticleTableMap';
 
     /**
      * Initialize the table attributes, columns and validators
@@ -35,7 +35,7 @@ class PortfolioArticleTableMap extends TableMap
         $this->setName('portfolio_article');
         $this->setPhpName('PortfolioArticle');
         $this->setClassname('PortfolioArticle');
-        $this->setPackage('site_name');
+        $this->setPackage('portfolio');
         $this->setUseIdGenerator(true);
         // columns
         $this->addPrimaryKey('idArticle', 'Idarticle', 'INTEGER', true, null, null);

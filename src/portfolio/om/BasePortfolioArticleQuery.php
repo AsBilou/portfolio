@@ -60,7 +60,7 @@
  * @method array findByCategorie(int $categorie) Return PortfolioArticle objects filtered by the categorie column
  * @method array findByImg(string $img) Return PortfolioArticle objects filtered by the img column
  *
- * @package    propel.generator.site_name.om
+ * @package    propel.generator.portfolio.om
  */
 abstract class BasePortfolioArticleQuery extends ModelCriteria
 {

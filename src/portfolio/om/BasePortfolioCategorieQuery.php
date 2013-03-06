@@ -28,7 +28,7 @@
  * @method array findById(int $id) Return PortfolioCategorie objects filtered by the id column
  * @method array findByNom(string $nom) Return PortfolioCategorie objects filtered by the nom column
  *
- * @package    propel.generator.site_name.om
+ * @package    propel.generator.portfolio.om
  */
 abstract class BasePortfolioCategorieQuery extends ModelCriteria
 {

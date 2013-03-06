@@ -4,19 +4,19 @@
 $conf = array (
   'datasources' => 
   array (
-    'site_name' => 
+    'portfolio' => 
     array (
       'adapter' => 'mysql',
       'connection' => 
       array (
-        'dsn' => 'mysql:host=127.0.0.1;dbname=site_name',
+        'dsn' => 'mysql:host=127.0.0.1;dbname=portfolio',
         'user' => 'root',
         'password' => 'root',
       ),
     ),
-    'default' => 'site_name',
+    'default' => 'portfolio',
   ),
   'generator_version' => '1.6.9-dev',
 );
-$conf['classmap'] = include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classmap-site_name-conf.php');
+$conf['classmap'] = include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classmap-portfolio-conf.php');
 return $conf;
