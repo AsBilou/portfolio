@@ -4,6 +4,19 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ---------------------------------------------------------------------
+-- portfolio_categorie
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `portfolio_categorie`;
+
+CREATE TABLE `portfolio_categorie`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `nom` VARCHAR(45) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
+
+-- ---------------------------------------------------------------------
 -- portfolio_article
 -- ---------------------------------------------------------------------
 
@@ -26,15 +39,97 @@ CREATE TABLE `portfolio_article`
 ) ENGINE=MyISAM;
 
 -- ---------------------------------------------------------------------
--- portfolio_categorie
+-- portfolio_etude
 -- ---------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `portfolio_categorie`;
+DROP TABLE IF EXISTS `portfolio_etude`;
 
-CREATE TABLE `portfolio_categorie`
+CREATE TABLE `portfolio_etude`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `nom` VARCHAR(45) NOT NULL,
+    `start` INTEGER NOT NULL,
+    `end` INTEGER NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `city` VARCHAR(45) NOT NULL,
+    `zipCode` INTEGER NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
+
+-- ---------------------------------------------------------------------
+-- portfolio_diplome
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `portfolio_diplome`;
+
+CREATE TABLE `portfolio_diplome`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `years` INTEGER NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
+
+-- ---------------------------------------------------------------------
+-- portfolio_company
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `portfolio_company`;
+
+CREATE TABLE `portfolio_company`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `start` INTEGER NOT NULL,
+    `end` INTEGER NOT NULL,
+    `company` VARCHAR(255) NOT NULL,
+    `job` VARCHAR(255) NOT NULL,
+    `description` VARCHAR(255) NOT NULL,
+    `type` VARCHAR(45) NOT NULL,
+    `city` VARCHAR(45) NOT NULL,
+    `zipCode` INTEGER NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
+
+-- ---------------------------------------------------------------------
+-- portfolio_formation
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `portfolio_formation`;
+
+CREATE TABLE `portfolio_formation`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `years` INTEGER NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `city` VARCHAR(45) NOT NULL,
+    `zipCode` INTEGER NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
+
+-- ---------------------------------------------------------------------
+-- portfolio_skills
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `portfolio_skills`;
+
+CREATE TABLE `portfolio_skills`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `type` INTEGER NOT NULL,
+    `description` VARCHAR(1000) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
+
+-- ---------------------------------------------------------------------
+-- portfolio_interest
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `portfolio_interest`;
+
+CREATE TABLE `portfolio_interest`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `type` INTEGER NOT NULL,
+    `description` VARCHAR(1000) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;
 

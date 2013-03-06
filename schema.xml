@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database name="portfolio" defaultIdMethod="native">
+    <table name="portfolio_categorie" phpName="PortfolioCategorie">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="nom" type="varchar" size="45" required="true" />
+    </table>
     <table name="portfolio_article" phpName="PortfolioArticle">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="nom" type="varchar" size="45" required="true" />
@@ -15,8 +19,45 @@
             <reference local="categorie" foreign="id"/>
         </foreign-key>
     </table>
-    <table name="portfolio_categorie" phpName="PortfolioCategorie">
+    <table name="portfolio_etude" phpName="PortfolioEtude">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
-        <column name="nom" type="varchar" size="45" required="true" />
+        <column name="start" type="integer" required="true" />
+        <column name="end" type="integer" required="true" />
+        <column name="name" type="varchar" size="255" required="true" />
+        <column name="city" type="varchar" size="45" required="true" />
+        <column name="zipCode" type="integer" required="true" />
+    </table>
+    <table name="portfolio_diplome" phpName="PortfolioDiplome">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="years" type="integer" required="true" />
+        <column name="name" type="varchar" size="255" required="true" />
+    </table>
+    <table name="portfolio_company" phpName="PortfolioCompany">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="start" type="integer" required="true" />
+        <column name="end" type="integer" required="true" />
+        <column name="company" type="varchar" size="255" required="true" />
+        <column name="job" type="varchar" size="255" required="true" />
+        <column name="description" type="varchar" size="255" required="true" />
+        <column name="type" type="varchar" size="45" required="true" />
+        <column name="city" type="varchar" size="45" required="true" />
+        <column name="zipCode" type="integer" required="true" />
+    </table>
+    <table name="portfolio_formation" phpName="PortfolioFormation">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="years" type="integer" required="true" />
+        <column name="name" type="varchar" size="255" required="true" />
+        <column name="city" type="varchar" size="45" required="true" />
+        <column name="zipCode" type="integer" required="true" />
+    </table>
+    <table name="portfolio_skills" phpName="PortfolioSkills">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="type" type="integer" required="true" />
+        <column name="description" type="varchar" size="1000" required="true" />
+    </table>
+    <table name="portfolio_interest" phpName="PortfolioInterest">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="type" type="integer" required="true" />
+        <column name="description" type="varchar" size="1000" required="true" />
     </table>
 </database>
