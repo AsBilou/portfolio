@@ -10,17 +10,17 @@ $app = require __DIR__.'/bootstrap.php';
 
 //Appel le fichier twig en fonction de la page
 $app->get('/', function () use ($app) {
-
-    return $app['twig']->render('template/index.twig', array(
-        'texte'=>$texte
+    $texte = 'test';
+    return $app['twig']->render('template/site/index.twig', array(
+        'texte'=>$texte,
     ));
 
 });
 
 $app->get('/accueil', function () use ($app) {
-
-    return $app['twig']->render('template/index.twig', array(
-        'texte'=>$texte
+    $texte = 'test';
+    return $app['twig']->render('template/site/index.twig', array(
+        'texte'=>$texte,
     ));
 
 });
