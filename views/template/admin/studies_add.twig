@@ -1,0 +1,8 @@
+{%extends 'layout/admin/base.twig'%}
+{%block content%}
+    <legend>Ajout d'une formation</legend>
+    <form id="formEn" novalidate action="{{ path('CV_Add_Studies') }}" method="post">
+        {{ form_widget(form) }}
+        <input class="btn btn-primary" type="submit" value="Ajouter">
+    </form>
+{%endblock%}

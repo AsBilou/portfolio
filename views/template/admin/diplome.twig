@@ -1,0 +1,40 @@
+{%extends 'layout/admin/base.twig'%}
+{%block content%}
+    <legend>Diplômes</legend>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Année
+            </th>
+            <th>
+                Nom
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for diplome in diplomes %}
+            <tr>
+                <th>
+                    {{ diplome.id }}
+                </th>
+                <td>
+                    {{ diplome.years }}
+                </td>
+                <td>
+                    {{ diplome.name }}
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="{{ app.request.basepath }}/admin/cv/diplome/delete/{{ diplome.id }}"><i class="icon-trash icon-white"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{%endblock%}

@@ -1,0 +1,76 @@
+{%extends 'layout/admin/base.twig'%}
+{%block content%}
+    <legend>Éxpériences professionnelles</legend>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Début
+            </th>
+            <th>
+                Fin
+            </th>
+            <th>
+                Entreprise
+            </th>
+            <th>
+                Métier
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                type
+            </th>
+            <th>
+                city
+            </th>
+            <th>
+                Département
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for company in companies %}
+            <tr>
+                <th>
+                    {{ company.id }}
+                </th>
+                <td>
+                    {{ company.start }}
+                </td>
+                <td>
+                    {{ company.end }}
+                </td>
+                <td>
+                    {{ company.company }}
+                </td>
+                <td>
+                    {{ company.job }}
+                </td>
+                <td>
+                    {{ company.description }}
+                </td>
+                <td>
+                    {{ company.type }}
+                </td>
+                <td>
+                    {{ company.city }}
+                </td>
+                <td>
+                    {{ company.zipCode }}
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="{{ app.request.basepath }}/admin/cv/company/delete/{{ company.id }}"><i class="icon-trash icon-white"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{%endblock%}

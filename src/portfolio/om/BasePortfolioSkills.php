@@ -37,7 +37,7 @@ abstract class BasePortfolioSkills extends BaseObject implements Persistent
 
     /**
      * The value for the type field.
-     * @var        int
+     * @var        string
      */
     protected $type;
 
@@ -80,7 +80,7 @@ abstract class BasePortfolioSkills extends BaseObject implements Persistent
     /**
      * Get the [type] column value.
      *
-     * @return int
+     * @return string
      */
     public function getType()
     {
@@ -121,13 +121,13 @@ abstract class BasePortfolioSkills extends BaseObject implements Persistent
     /**
      * Set the value of [type] column.
      *
-     * @param int $v new value
+     * @param string $v new value
      * @return PortfolioSkills The current object (for fluent API support)
      */
     public function setType($v)
     {
         if ($v !== null && is_numeric($v)) {
-            $v = (int) $v;
+            $v = (string) $v;
         }
 
         if ($this->type !== $v) {
@@ -193,7 +193,7 @@ abstract class BasePortfolioSkills extends BaseObject implements Persistent
         try {
 
             $this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
-            $this->type = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
+            $this->type = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
             $this->description = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
             $this->resetModified();
 
@@ -439,7 +439,7 @@ abstract class BasePortfolioSkills extends BaseObject implements Persistent
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
                     case '`type`':
-                        $stmt->bindValue($identifier, $this->type, PDO::PARAM_INT);
+                        $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
                         break;
                     case '`description`':
                         $stmt->bindValue($identifier, $this->description, PDO::PARAM_STR);

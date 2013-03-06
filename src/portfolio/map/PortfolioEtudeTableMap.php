@@ -42,6 +42,7 @@ class PortfolioEtudeTableMap extends TableMap
         $this->addColumn('start', 'Start', 'INTEGER', true, null, null);
         $this->addColumn('end', 'End', 'INTEGER', true, null, null);
         $this->addColumn('name', 'Name', 'VARCHAR', true, 255, null);
+        $this->addColumn('university', 'University', 'VARCHAR', true, 255, null);
         $this->addColumn('city', 'City', 'VARCHAR', true, 45, null);
         $this->addColumn('zipCode', 'Zipcode', 'INTEGER', true, null, null);
         // validators

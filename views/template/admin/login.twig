@@ -1,0 +1,10 @@
+{% extends 'layout/admin/base.twig' %}
+{% block content %}
+    <form class="form-signin span3" action="{{ path('admin_login_check') }}" method="post">
+        <legend class="form-signin-heading">Please sign in</legend>
+        {{ error }}
+        <input class="" type="text" name="_username" value="{{ last_username }}" placeholder="Email"/>
+        <input class="" type="password" name="_password" value="" placeholder="Mot de passe"/>
+        <input class="btn btn-large btn-primary" type="submit" />
+    </form>
+{% endblock %}

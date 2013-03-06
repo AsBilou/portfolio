@@ -10,6 +10,7 @@
  * @method PortfolioEtudeQuery orderByStart($order = Criteria::ASC) Order by the start column
  * @method PortfolioEtudeQuery orderByEnd($order = Criteria::ASC) Order by the end column
  * @method PortfolioEtudeQuery orderByName($order = Criteria::ASC) Order by the name column
+ * @method PortfolioEtudeQuery orderByUniversity($order = Criteria::ASC) Order by the university column
  * @method PortfolioEtudeQuery orderByCity($order = Criteria::ASC) Order by the city column
  * @method PortfolioEtudeQuery orderByZipcode($order = Criteria::ASC) Order by the zipCode column
  *
@@ -17,6 +18,7 @@
  * @method PortfolioEtudeQuery groupByStart() Group by the start column
  * @method PortfolioEtudeQuery groupByEnd() Group by the end column
  * @method PortfolioEtudeQuery groupByName() Group by the name column
+ * @method PortfolioEtudeQuery groupByUniversity() Group by the university column
  * @method PortfolioEtudeQuery groupByCity() Group by the city column
  * @method PortfolioEtudeQuery groupByZipcode() Group by the zipCode column
  *
@@ -30,6 +32,7 @@
  * @method PortfolioEtude findOneByStart(int $start) Return the first PortfolioEtude filtered by the start column
  * @method PortfolioEtude findOneByEnd(int $end) Return the first PortfolioEtude filtered by the end column
  * @method PortfolioEtude findOneByName(string $name) Return the first PortfolioEtude filtered by the name column
+ * @method PortfolioEtude findOneByUniversity(string $university) Return the first PortfolioEtude filtered by the university column
  * @method PortfolioEtude findOneByCity(string $city) Return the first PortfolioEtude filtered by the city column
  * @method PortfolioEtude findOneByZipcode(int $zipCode) Return the first PortfolioEtude filtered by the zipCode column
  *
@@ -37,6 +40,7 @@
  * @method array findByStart(int $start) Return PortfolioEtude objects filtered by the start column
  * @method array findByEnd(int $end) Return PortfolioEtude objects filtered by the end column
  * @method array findByName(string $name) Return PortfolioEtude objects filtered by the name column
+ * @method array findByUniversity(string $university) Return PortfolioEtude objects filtered by the university column
  * @method array findByCity(string $city) Return PortfolioEtude objects filtered by the city column
  * @method array findByZipcode(int $zipCode) Return PortfolioEtude objects filtered by the zipCode column
  *
@@ -142,7 +146,7 @@ abstract class BasePortfolioEtudeQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `start`, `end`, `name`, `city`, `zipCode` FROM `portfolio_etude` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `start`, `end`, `name`, `university`, `city`, `zipCode` FROM `portfolio_etude` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -384,6 +388,35 @@ abstract class BasePortfolioEtudeQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(PortfolioEtudePeer::NAME, $name, $comparison);
+    }
+
+    /**
+     * Filter the query on the university column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByUniversity('fooValue');   // WHERE university = 'fooValue'
+     * $query->filterByUniversity('%fooValue%'); // WHERE university LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $university The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return PortfolioEtudeQuery The current query, for fluid interface
+     */
+    public function filterByUniversity($university = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($university)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $university)) {
+                $university = str_replace('*', '%', $university);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(PortfolioEtudePeer::UNIVERSITY, $university, $comparison);
     }
 
     /**

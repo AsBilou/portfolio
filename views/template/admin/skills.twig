@@ -1,0 +1,40 @@
+{%extends 'layout/admin/base.twig'%}
+{%block content%}
+    <legend>Compétences professionnelles</legend>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for skill in skills %}
+            <tr>
+                <th>
+                    {{ skill.id }}
+                </th>
+                <td>
+                    {{ skill.type }}
+                </td>
+                <td>
+                    {{ skill.description }}
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="{{ app.request.basepath }}/admin/cv/skills/delete/{{ skill.id }}"><i class="icon-trash icon-white"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{%endblock%}

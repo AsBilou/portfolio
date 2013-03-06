@@ -24,13 +24,13 @@ abstract class BasePortfolioEtudePeer
     const TM_CLASS = 'PortfolioEtudeTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 6;
+    const NUM_COLUMNS = 7;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 6;
+    const NUM_HYDRATE_COLUMNS = 7;
 
     /** the column name for the id field */
     const ID = 'portfolio_etude.id';
@@ -43,6 +43,9 @@ abstract class BasePortfolioEtudePeer
 
     /** the column name for the name field */
     const NAME = 'portfolio_etude.name';
+
+    /** the column name for the university field */
+    const UNIVERSITY = 'portfolio_etude.university';
 
     /** the column name for the city field */
     const CITY = 'portfolio_etude.city';
@@ -69,12 +72,12 @@ abstract class BasePortfolioEtudePeer
      * e.g. PortfolioEtudePeer::$fieldNames[PortfolioEtudePeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Start', 'End', 'Name', 'City', 'Zipcode', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'start', 'end', 'name', 'city', 'zipcode', ),
-        BasePeer::TYPE_COLNAME => array (PortfolioEtudePeer::ID, PortfolioEtudePeer::START, PortfolioEtudePeer::END, PortfolioEtudePeer::NAME, PortfolioEtudePeer::CITY, PortfolioEtudePeer::ZIPCODE, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'START', 'END', 'NAME', 'CITY', 'ZIPCODE', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'start', 'end', 'name', 'city', 'zipCode', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Start', 'End', 'Name', 'University', 'City', 'Zipcode', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'start', 'end', 'name', 'university', 'city', 'zipcode', ),
+        BasePeer::TYPE_COLNAME => array (PortfolioEtudePeer::ID, PortfolioEtudePeer::START, PortfolioEtudePeer::END, PortfolioEtudePeer::NAME, PortfolioEtudePeer::UNIVERSITY, PortfolioEtudePeer::CITY, PortfolioEtudePeer::ZIPCODE, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'START', 'END', 'NAME', 'UNIVERSITY', 'CITY', 'ZIPCODE', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'start', 'end', 'name', 'university', 'city', 'zipCode', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
     );
 
     /**
@@ -84,12 +87,12 @@ abstract class BasePortfolioEtudePeer
      * e.g. PortfolioEtudePeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Start' => 1, 'End' => 2, 'Name' => 3, 'City' => 4, 'Zipcode' => 5, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'start' => 1, 'end' => 2, 'name' => 3, 'city' => 4, 'zipcode' => 5, ),
-        BasePeer::TYPE_COLNAME => array (PortfolioEtudePeer::ID => 0, PortfolioEtudePeer::START => 1, PortfolioEtudePeer::END => 2, PortfolioEtudePeer::NAME => 3, PortfolioEtudePeer::CITY => 4, PortfolioEtudePeer::ZIPCODE => 5, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'START' => 1, 'END' => 2, 'NAME' => 3, 'CITY' => 4, 'ZIPCODE' => 5, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'start' => 1, 'end' => 2, 'name' => 3, 'city' => 4, 'zipCode' => 5, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Start' => 1, 'End' => 2, 'Name' => 3, 'University' => 4, 'City' => 5, 'Zipcode' => 6, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'start' => 1, 'end' => 2, 'name' => 3, 'university' => 4, 'city' => 5, 'zipcode' => 6, ),
+        BasePeer::TYPE_COLNAME => array (PortfolioEtudePeer::ID => 0, PortfolioEtudePeer::START => 1, PortfolioEtudePeer::END => 2, PortfolioEtudePeer::NAME => 3, PortfolioEtudePeer::UNIVERSITY => 4, PortfolioEtudePeer::CITY => 5, PortfolioEtudePeer::ZIPCODE => 6, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'START' => 1, 'END' => 2, 'NAME' => 3, 'UNIVERSITY' => 4, 'CITY' => 5, 'ZIPCODE' => 6, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'start' => 1, 'end' => 2, 'name' => 3, 'university' => 4, 'city' => 5, 'zipCode' => 6, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
     );
 
     /**
@@ -167,6 +170,7 @@ abstract class BasePortfolioEtudePeer
             $criteria->addSelectColumn(PortfolioEtudePeer::START);
             $criteria->addSelectColumn(PortfolioEtudePeer::END);
             $criteria->addSelectColumn(PortfolioEtudePeer::NAME);
+            $criteria->addSelectColumn(PortfolioEtudePeer::UNIVERSITY);
             $criteria->addSelectColumn(PortfolioEtudePeer::CITY);
             $criteria->addSelectColumn(PortfolioEtudePeer::ZIPCODE);
         } else {
@@ -174,6 +178,7 @@ abstract class BasePortfolioEtudePeer
             $criteria->addSelectColumn($alias . '.start');
             $criteria->addSelectColumn($alias . '.end');
             $criteria->addSelectColumn($alias . '.name');
+            $criteria->addSelectColumn($alias . '.university');
             $criteria->addSelectColumn($alias . '.city');
             $criteria->addSelectColumn($alias . '.zipCode');
         }

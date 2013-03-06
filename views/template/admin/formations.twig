@@ -1,0 +1,52 @@
+{%extends 'layout/admin/base.twig'%}
+{%block content%}
+    <legend>Formations</legend>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Année
+            </th>
+            <th>
+                Nom
+            </th>
+            <th>
+                Ville
+            </th>
+            <th>
+                Département
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for formation in formations %}
+            <tr>
+                <th>
+                    {{ formation.id }}
+                </th>
+                <td>
+                    {{ formation.years }}
+                </td>
+                <td>
+                    {{ formation.name }}
+                </td>
+                <td>
+                    {{ formation.city }}
+                </td>
+                <td>
+                    {{ formation.zipCode }}
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="{{ app.request.basepath }}/admin/cv/formations/delete/{{ formation.id }}"><i class="icon-trash icon-white"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{%endblock%}

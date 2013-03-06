@@ -21,11 +21,11 @@
  * @method PortfolioInterest findOne(PropelPDO $con = null) Return the first PortfolioInterest matching the query
  * @method PortfolioInterest findOneOrCreate(PropelPDO $con = null) Return the first PortfolioInterest matching the query, or a new PortfolioInterest object populated from the query conditions when no match is found
  *
- * @method PortfolioInterest findOneByType(int $type) Return the first PortfolioInterest filtered by the type column
+ * @method PortfolioInterest findOneByType(string $type) Return the first PortfolioInterest filtered by the type column
  * @method PortfolioInterest findOneByDescription(string $description) Return the first PortfolioInterest filtered by the description column
  *
  * @method array findById(int $id) Return PortfolioInterest objects filtered by the id column
- * @method array findByType(int $type) Return PortfolioInterest objects filtered by the type column
+ * @method array findByType(string $type) Return PortfolioInterest objects filtered by the type column
  * @method array findByDescription(string $description) Return PortfolioInterest objects filtered by the description column
  *
  * @package    propel.generator.portfolio.om
@@ -266,37 +266,24 @@ abstract class BasePortfolioInterestQuery extends ModelCriteria
      *
      * Example usage:
      * <code>
-     * $query->filterByType(1234); // WHERE type = 1234
-     * $query->filterByType(array(12, 34)); // WHERE type IN (12, 34)
-     * $query->filterByType(array('min' => 12)); // WHERE type >= 12
-     * $query->filterByType(array('max' => 12)); // WHERE type <= 12
+     * $query->filterByType('fooValue');   // WHERE type = 'fooValue'
+     * $query->filterByType('%fooValue%'); // WHERE type LIKE '%fooValue%'
      * </code>
      *
-     * @param     mixed $type The value to use as filter.
-     *              Use scalar values for equality.
-     *              Use array values for in_array() equivalent.
-     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $type The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return PortfolioInterestQuery The current query, for fluid interface
      */
     public function filterByType($type = null, $comparison = null)
     {
-        if (is_array($type)) {
-            $useMinMax = false;
-            if (isset($type['min'])) {
-                $this->addUsingAlias(PortfolioInterestPeer::TYPE, $type['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($type['max'])) {
-                $this->addUsingAlias(PortfolioInterestPeer::TYPE, $type['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
+        if (null === $comparison) {
+            if (is_array($type)) {
                 $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $type)) {
+                $type = str_replace('*', '%', $type);
+                $comparison = Criteria::LIKE;
             }
         }
 

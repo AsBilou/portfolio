@@ -24,6 +24,7 @@
         <column name="start" type="integer" required="true" />
         <column name="end" type="integer" required="true" />
         <column name="name" type="varchar" size="255" required="true" />
+        <column name="university" type="varchar" size="255" required="true" />
         <column name="city" type="varchar" size="45" required="true" />
         <column name="zipCode" type="integer" required="true" />
     </table>
@@ -52,12 +53,12 @@
     </table>
     <table name="portfolio_skills" phpName="PortfolioSkills">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
-        <column name="type" type="integer" required="true" />
+        <column name="type" type="varchar" size="45" required="true" />
         <column name="description" type="varchar" size="1000" required="true" />
     </table>
     <table name="portfolio_interest" phpName="PortfolioInterest">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
-        <column name="type" type="integer" required="true" />
+        <column name="type" type="varchar" size="45" required="true" />
         <column name="description" type="varchar" size="1000" required="true" />
     </table>
 </database>

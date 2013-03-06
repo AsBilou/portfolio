@@ -39,7 +39,7 @@ class PortfolioSkillsTableMap extends TableMap
         $this->setUseIdGenerator(true);
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('type', 'Type', 'INTEGER', true, null, null);
+        $this->addColumn('type', 'Type', 'VARCHAR', true, 45, null);
         $this->addColumn('description', 'Description', 'VARCHAR', true, 1000, null);
         // validators
     } // initialize()

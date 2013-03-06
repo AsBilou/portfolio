@@ -50,6 +50,7 @@ CREATE TABLE `portfolio_etude`
     `start` INTEGER NOT NULL,
     `end` INTEGER NOT NULL,
     `name` VARCHAR(255) NOT NULL,
+    `university` VARCHAR(255) NOT NULL,
     `city` VARCHAR(45) NOT NULL,
     `zipCode` INTEGER NOT NULL,
     PRIMARY KEY (`id`)
@@ -114,7 +115,7 @@ DROP TABLE IF EXISTS `portfolio_skills`;
 CREATE TABLE `portfolio_skills`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `type` INTEGER NOT NULL,
+    `type` VARCHAR(45) NOT NULL,
     `description` VARCHAR(1000) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;
@@ -128,7 +129,7 @@ DROP TABLE IF EXISTS `portfolio_interest`;
 CREATE TABLE `portfolio_interest`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `type` INTEGER NOT NULL,
+    `type` VARCHAR(45) NOT NULL,
     `description` VARCHAR(1000) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;

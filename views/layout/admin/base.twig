@@ -1,2 +1,97 @@
-{%block content%}
-{%endblock%}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Administration - Pollina</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="{{ app.request.basepath }}/css/bootstrap.css" rel="stylesheet">
+    {% block stylesheet %}
+
+    {% endblock %}
+    <style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+    </style>
+    <link href="{{ app.request.basepath }}/css/bootstrap-responsive.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="#">Administration</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">CV <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-header">Études</li>
+                                <li><a href="{{ path('CV_Studies') }}">Afficher études</a></li>
+                                <li><a href="{{ path('CV_Add_Studies') }}">Ajout étude</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header">Diplômes</li>
+                                <li><a href="{{ path('CV_diplome') }}">Afficher diplômes</a></li>
+                                <li><a href="{{ path('CV_diplome_add') }}">Ajout diplôme</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header">Expériences Professionnelles</li>
+                                <li><a href="{{ path('CV_company') }}">Afficher expériences</a></li>
+                                <li><a href="{{ path('CV_company_add') }}">Ajout expérience</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header">Compétence Professionnelles</li>
+                                <li><a href="{{ path('CV_skills') }}">Afficher compétences</a></li>
+                                <li><a href="{{ path('CV_skills_add') }}">Ajout compétence</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header">Autres formations</li>
+                                <li><a href="{{ path('CV_formations') }}">Afficher formations</a></li>
+                                <li><a href="{{ path('CV_formations_add') }}">Ajout formation</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header">Centre d'intérêts</li>
+                                <li><a href="{{ path('CV_interests') }}">Afficher intérêts</a></li>
+                                <li><a href="{{ path('CV_interests_add') }}">Ajout intétêt</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    <p class="navbar-text pull-right">
+                        <a href="{{ path('admin_logout') }}" class="navbar-link">Deconnexion</a>
+                    </p>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" >
+        {%block content%}
+
+        {%endblock%}
+    </div>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+
+            </div>
+        </div>
+    </div>
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ app.request.basepath }}/js/jquery.js"></script>
+    <script src="{{ app.request.basepath }}/js/bootstrap.js"></script>
+    {% block javascript %}
+
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+{%extends 'layout/admin/base.twig'%}
+{%block content%}
+    <legend>Centre d'intérêts</legend>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for interest in interests %}
+            <tr>
+                <th>
+                    {{ interest.id }}
+                </th>
+                <td>
+                    {{ interest.type }}
+                </td>
+                <td>
+                    {{ interest.description }}
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="{{ app.request.basepath }}/admin/cv/interests/delete/{{ interest.id }}"><i class="icon-trash icon-white"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{%endblock%}

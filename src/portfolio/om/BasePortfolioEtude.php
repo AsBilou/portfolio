@@ -54,6 +54,12 @@ abstract class BasePortfolioEtude extends BaseObject implements Persistent
     protected $name;
 
     /**
+     * The value for the university field.
+     * @var        string
+     */
+    protected $university;
+
+    /**
      * The value for the city field.
      * @var        string
      */
@@ -123,6 +129,16 @@ abstract class BasePortfolioEtude extends BaseObject implements Persistent
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Get the [university] column value.
+     *
+     * @return string
+     */
+    public function getUniversity()
+    {
+        return $this->university;
     }
 
     /**
@@ -230,6 +246,27 @@ abstract class BasePortfolioEtude extends BaseObject implements Persistent
     } // setName()
 
     /**
+     * Set the value of [university] column.
+     *
+     * @param string $v new value
+     * @return PortfolioEtude The current object (for fluent API support)
+     */
+    public function setUniversity($v)
+    {
+        if ($v !== null && is_numeric($v)) {
+            $v = (string) $v;
+        }
+
+        if ($this->university !== $v) {
+            $this->university = $v;
+            $this->modifiedColumns[] = PortfolioEtudePeer::UNIVERSITY;
+        }
+
+
+        return $this;
+    } // setUniversity()
+
+    /**
      * Set the value of [city] column.
      *
      * @param string $v new value
@@ -307,8 +344,9 @@ abstract class BasePortfolioEtude extends BaseObject implements Persistent
             $this->start = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
             $this->end = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
             $this->name = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-            $this->city = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-            $this->zipcode = ($row[$startcol + 5] !== null) ? (int) $row[$startcol + 5] : null;
+            $this->university = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+            $this->city = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+            $this->zipcode = ($row[$startcol + 6] !== null) ? (int) $row[$startcol + 6] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -317,7 +355,7 @@ abstract class BasePortfolioEtude extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 6; // 6 = PortfolioEtudePeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 7; // 7 = PortfolioEtudePeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating PortfolioEtude object", $e);
@@ -541,6 +579,9 @@ abstract class BasePortfolioEtude extends BaseObject implements Persistent
         if ($this->isColumnModified(PortfolioEtudePeer::NAME)) {
             $modifiedColumns[':p' . $index++]  = '`name`';
         }
+        if ($this->isColumnModified(PortfolioEtudePeer::UNIVERSITY)) {
+            $modifiedColumns[':p' . $index++]  = '`university`';
+        }
         if ($this->isColumnModified(PortfolioEtudePeer::CITY)) {
             $modifiedColumns[':p' . $index++]  = '`city`';
         }
@@ -569,6 +610,9 @@ abstract class BasePortfolioEtude extends BaseObject implements Persistent
                         break;
                     case '`name`':
                         $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
+                        break;
+                    case '`university`':
+                        $stmt->bindValue($identifier, $this->university, PDO::PARAM_STR);
                         break;
                     case '`city`':
                         $stmt->bindValue($identifier, $this->city, PDO::PARAM_STR);
@@ -723,9 +767,12 @@ abstract class BasePortfolioEtude extends BaseObject implements Persistent
                 return $this->getName();
                 break;
             case 4:
-                return $this->getCity();
+                return $this->getUniversity();
                 break;
             case 5:
+                return $this->getCity();
+                break;
+            case 6:
                 return $this->getZipcode();
                 break;
             default:
@@ -760,8 +807,9 @@ abstract class BasePortfolioEtude extends BaseObject implements Persistent
             $keys[1] => $this->getStart(),
             $keys[2] => $this->getEnd(),
             $keys[3] => $this->getName(),
-            $keys[4] => $this->getCity(),
-            $keys[5] => $this->getZipcode(),
+            $keys[4] => $this->getUniversity(),
+            $keys[5] => $this->getCity(),
+            $keys[6] => $this->getZipcode(),
         );
 
         return $result;
@@ -809,9 +857,12 @@ abstract class BasePortfolioEtude extends BaseObject implements Persistent
                 $this->setName($value);
                 break;
             case 4:
-                $this->setCity($value);
+                $this->setUniversity($value);
                 break;
             case 5:
+                $this->setCity($value);
+                break;
+            case 6:
                 $this->setZipcode($value);
                 break;
         } // switch()
@@ -842,8 +893,9 @@ abstract class BasePortfolioEtude extends BaseObject implements Persistent
         if (array_key_exists($keys[1], $arr)) $this->setStart($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setEnd($arr[$keys[2]]);
         if (array_key_exists($keys[3], $arr)) $this->setName($arr[$keys[3]]);
-        if (array_key_exists($keys[4], $arr)) $this->setCity($arr[$keys[4]]);
-        if (array_key_exists($keys[5], $arr)) $this->setZipcode($arr[$keys[5]]);
+        if (array_key_exists($keys[4], $arr)) $this->setUniversity($arr[$keys[4]]);
+        if (array_key_exists($keys[5], $arr)) $this->setCity($arr[$keys[5]]);
+        if (array_key_exists($keys[6], $arr)) $this->setZipcode($arr[$keys[6]]);
     }
 
     /**
@@ -859,6 +911,7 @@ abstract class BasePortfolioEtude extends BaseObject implements Persistent
         if ($this->isColumnModified(PortfolioEtudePeer::START)) $criteria->add(PortfolioEtudePeer::START, $this->start);
         if ($this->isColumnModified(PortfolioEtudePeer::END)) $criteria->add(PortfolioEtudePeer::END, $this->end);
         if ($this->isColumnModified(PortfolioEtudePeer::NAME)) $criteria->add(PortfolioEtudePeer::NAME, $this->name);
+        if ($this->isColumnModified(PortfolioEtudePeer::UNIVERSITY)) $criteria->add(PortfolioEtudePeer::UNIVERSITY, $this->university);
         if ($this->isColumnModified(PortfolioEtudePeer::CITY)) $criteria->add(PortfolioEtudePeer::CITY, $this->city);
         if ($this->isColumnModified(PortfolioEtudePeer::ZIPCODE)) $criteria->add(PortfolioEtudePeer::ZIPCODE, $this->zipcode);
 
@@ -927,6 +980,7 @@ abstract class BasePortfolioEtude extends BaseObject implements Persistent
         $copyObj->setStart($this->getStart());
         $copyObj->setEnd($this->getEnd());
         $copyObj->setName($this->getName());
+        $copyObj->setUniversity($this->getUniversity());
         $copyObj->setCity($this->getCity());
         $copyObj->setZipcode($this->getZipcode());
         if ($makeNew) {
@@ -984,6 +1038,7 @@ abstract class BasePortfolioEtude extends BaseObject implements Persistent
         $this->start = null;
         $this->end = null;
         $this->name = null;
+        $this->university = null;
         $this->city = null;
         $this->zipcode = null;
         $this->alreadyInSave = false;
