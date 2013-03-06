@@ -227,7 +227,7 @@ body {
   font-size: 14px;
   line-height: 20px;
   color: #333333;
-  background-color: #ffffff;
+    background-color: rgb(198,236,239);
 }
 
 a {
@@ -1975,6 +1975,7 @@ table {
   background-color: transparent;
   border-collapse: collapse;
   border-spacing: 0;
+    background-color: white;
 }
 
 .table {

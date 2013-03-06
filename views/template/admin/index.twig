@@ -1,4 +1,88 @@
 {%extends 'layout/admin/base.twig'%}
 {%block content%}
-    test
+    <legend>Nombre d'information</legend>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Valeur
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    Nombre d'études
+                </th>
+                <td>
+                    {{ nbEtudes }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Nombre de diplômes
+                </th>
+                <td>
+                    {{ nbDiplomes }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Nombre d'expérience professionnelles
+                </th>
+                <td>
+                    {{ nbCompanies }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Nombre de compétence pro
+                </th>
+                <td>
+                    {{ nbSkills }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Nombre de centre d'interets
+                </th>
+                <td>
+                    {{ nbInterests }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                </th>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Nombre de sites
+                </th>
+                <td>
+                    {{ nbSites }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Nombre d'applications
+                </th>
+                <td>
+                    {{ nbApplications }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Nombre de projets
+                </th>
+                <td>
+                    {{ nbProjets }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
 {%endblock%}

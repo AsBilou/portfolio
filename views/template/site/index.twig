@@ -3,5 +3,70 @@
     {{ parent() }}
 {% endblock %}
 {%block content%}
-    {{texte}}
+    <div class="well">
+        <h3 class="">Curriculum Vitae</h3>
+        <div class="" id="content-CV" style="display:block;">
+            <h4>Etudes :</h4>
+            <p>
+                <ul>
+                    {% for etude in etudes %}
+                    <li>
+                        <h6>{{ etude.start }} - {{ etude.end }}</h6>{{ etude.name }}, {{ etude.university }}, {{ etude.city }} ({{ etude.zipCode }})
+                    </li>
+                    {% endfor %}
+                </ul>
+            </p>
+            <h4>Diplômes :</h4>
+            <p>
+                <ul>
+                    {% for diplome in diplomes %}
+                    <li>
+                        <h6>{{ diplome.years }}</h6> {{ diplome.name }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </p>
+            <h4>Expériences professionnelles :</h4>
+            <p>
+                <ul>
+                    {% for company in companies %}
+                    <li>
+                        <h6>{{ company.start }} - {{ company.end }}</h6> En {{ company.type }} : {{ company.job }} : {{ company.company }}, {{ company.city }} ({{ company.zipCode }}).
+                        <p style="text-indent:20px;margin-bottom:0px;">{{ company.description }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </p>
+            <h4>Compétences professionnelles :</h4>
+            <p>
+                <ul>
+                    {% for skill in skills %}
+                    <li>
+                        <h6>{{ skill.type }} :</h6>{{ skill.description }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </p>
+            <h4>Autres formations :</h4>
+            <p>
+                <ul>
+                    {% for formation in formations %}
+                    <li>
+                        <h6>{{ formation.years }} :</h6>{{ formation.name }}, {{ formation.city }} ({{ formation.zipCode }}).
+                    </li>
+                    {% endfor %}
+                </ul>
+            </p>
+            <h4>Centre d'intérêts :</h4>
+            <p>
+                <ul>
+                    {% for interest in interests %}
+                    <li>
+                        <h6>{{ interest.type }}</h6>{{ interest.description }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </p>
+        </div>
+    </div>
 {%endblock%}

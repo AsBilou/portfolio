@@ -21,10 +21,30 @@ $app->get('/login', function(Request $request) use ($app) {
 });
 
 $app->get('/admin', function () use ($app) {
+    $nbEtudes = PortfolioEtudeQuery::create()->count();
+    $nbDiplomes = PortfolioDiplomeQuery::create()->count();
+    $nbCompanies = PortfolioCompanyQuery::create()->count();
+    $nbSkills = PortfolioSkillsQuery::create()->count();
+    $nbFormations = PortfolioFormationQuery::create()->count();
+    $nbInterests = PortfolioInterestQuery::create()->count();
+    $nbSites = PortfolioArticleQuery::create()->filterByCategorie(1)->count();
+    $nbApplications = PortfolioArticleQuery::create()->filterByCategorie(2)->count();
+    $nbProjets = PortfolioArticleQuery::create()->filterByCategorie(3)->count();
+
     return $app['twig']->render('template/admin/index.twig', array(
+        'nbEtudes'=>$nbEtudes,
+        'nbDiplomes'=>$nbDiplomes,
+        'nbCompanies'=>$nbCompanies,
+        'nbSkills'=>$nbSkills,
+        'nbFormations'=>$nbFormations,
+        'nbInterests'=>$nbInterests,
+        'nbSites'=>$nbSites,
+        'nbApplications'=>$nbApplications,
+        'nbProjets'=>$nbProjets,
+
     ));
 
-});
+})->bind('admin');
 
 $app->get('/admin/cv/studies', function () use ($app) {
     $studies = PortfolioEtudeQuery::create()->find();

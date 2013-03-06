@@ -6,20 +6,28 @@ use Symfony\Component\HttpFoundation\Request;
 
 //Appel le fichier twig en fonction de la page
 $app->get('/', function () use ($app) {
-    $texte = 'test';
-    return $app['twig']->render('template/site/index.twig', array(
-        'texte'=>$texte,
-    ));
+    return $app->redirect($app['url_generator']->generate('site_index'));
 
 });
 
 $app->get('/accueil', function () use ($app) {
-    $texte = 'test';
+    $etudes = PortfolioEtudeQuery::create()->orderByStart('DESC')->find();
+    $diplomes = PortfolioDiplomeQuery::create()->orderByYears('DESC')->find();
+    $companies = PortfolioCompanyQuery::create()->orderByStart('DESC')->find();
+    $skills = PortfolioSkillsQuery::create()->orderById('ASC')->find();
+    $formations = PortfolioFormationQuery::create()->orderByYears('DESC')->find();
+    $interests = PortfolioInterestQuery::create()->orderById('ASC')->find();
+
     return $app['twig']->render('template/site/index.twig', array(
-        'texte'=>$texte,
+        'etudes'=>$etudes,
+        'diplomes'=>$diplomes,
+        'companies'=>$companies,
+        'skills'=>$skills,
+        'formations'=>$formations,
+        'interests'=>$interests,
     ));
 
-});
+})->bind('site_index');
 
 return $app;
 
