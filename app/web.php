@@ -29,6 +29,38 @@ $app->get('/accueil', function () use ($app) {
 
 })->bind('site_index');
 
+$app->get('/sites', function () use ($app) {
+    $sites = PortfolioArticleQuery::create()->filterByCategorie(1)->orderById()->find();
+    return $app['twig']->render('template/site/sites.twig', array(
+        'sites'=>$sites,
+    ));
+
+})->bind('article_site');
+
+$app->get('/applications', function () use ($app) {
+
+    return $app['twig']->render('template/site/index.twig', array(
+
+    ));
+
+})->bind('article_appli');
+
+$app->get('/projets', function () use ($app) {
+
+    return $app['twig']->render('template/site/index.twig', array(
+
+    ));
+
+})->bind('article_projet');
+
+$app->get('/contact', function () use ($app) {
+
+    return $app['twig']->render('template/site/index.twig', array(
+
+    ));
+
+})->bind('site_contact');
+
 return $app;
 
 ?>

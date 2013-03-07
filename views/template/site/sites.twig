@@ -1,0 +1,77 @@
+{%extends 'layout/site/base.twig'%}
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+{%block content%}
+    {% for site in sites %}
+    <div class="well">
+        <h2>{{ site.nom }}</h2>
+        <a href="http://romainbellina.fr/{{ site.access }}" title="cliquez pour acceder au site"><img src="{{ app.request.basepath }}/../files/img/{{ site.img }}"/></a>
+        <table class="table ">
+            <tbody>
+                <tr>
+                    <th>
+                        Nom du site
+                    </th>
+                    <td>
+                        {{ site.nom }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Type de site
+                    </th>
+                    <td>
+                        {{ site.type }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Langages utilisés
+                    </th>
+                    <td>
+                        {{ site.language }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Matériel nécessaire
+                    </th>
+                    <td>
+                        {{ site.materiel }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Description
+                    </th>
+                    <td>
+                        {{ site.description }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Accès
+                    </th>
+                    <td>
+                        <a href="http://romainbellina.fr/{{ site.access }}" title="cliquez pour acceder au site">{{ site.nom }}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Documentation
+                    </th>
+                    <td>
+                        {% if '.pdf' in site.documentation %}
+                            <a href="{{ app.request.basepath }}/../files/pdf/{{ site.documentation }}"><img src="{{ app.request.basepath }}/../files/img/icone_pdf.gif"/>Présentation de projet</a>
+                        {% else %}
+                            <a href="{{ site.documentation }}">Présentation de projet</a>
+                        {% endif %}
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% endfor %}
+{% endblock %}
