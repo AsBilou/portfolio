@@ -1,0 +1,42 @@
+{%extends 'layout/admin/base.twig'%}
+{% block stylesheet %}
+    <link href="{{ app.request.basepath }}/css/select2.css" rel="stylesheet">
+{% endblock %}
+{%block content%}
+    <legend>Ajout un nouveau site</legend>
+    <form id="formEn" novalidate action="{{ path('admin_sites_add') }}" method="post">
+        {{ form_widget(form) }}
+        <select id="e1" multiple="multiple" class="span5">
+            {% set counter = 0 %}
+            {% for picture in pictures %}
+                <option id="{{ counter }}" value="{{ picture }}">{{ picture }}</option>
+                {% set counter = counter +1 %}
+            {% endfor %}
+        </select>
+        <input class="btn btn-primary" type="submit" value="Ajouter">
+    </form>
+{%endblock%}
+{% block javascript %}
+    <script src="{{ app.request.basepath }}/js/select2.js"></script>
+    <script src="{{ app.request.basepath }}/js/tiny_mce/tiny_mce.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+            $("#e1").select2({ maximumSelectionSize: 1 });
+
+            $('#submitCar').on('click', function(e){
+                // We don't want this to act as a link so cancel the link action
+                e.preventDefault();
+                // Find form and submit it
+                $('#selected').val($("#e1").select2("val"));
+                $('#formCar').submit();
+            });
+
+            tinyMCE.init({
+                mode : "textareas"
+            });
+        });
+    </script>
+{% endblock %}
