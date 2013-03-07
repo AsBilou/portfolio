@@ -1,0 +1,83 @@
+{%extends 'layout/admin/base.twig'%}
+{%block content%}
+    <legend>Éxpériences professionnelles</legend>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Nom
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Langage
+            </th>
+            <th>
+                Materiel
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Documentation
+            </th>
+            <th>
+                Access
+            </th>
+            <th>
+                Catégorie
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for site in sites %}
+            <tr>
+                <th>
+                    {{ site.id }}
+                </th>
+                <td>
+                    {{ site.nom }}
+                </td>
+                <td>
+                    {{ site.type }}
+                </td>
+                <td>
+                    {{ site.language }}
+                </td>
+                <td>
+                    {{ site.materiel }}
+                </td>
+                <td>
+                    {{ site.description }}
+                </td>
+                <td>
+                    {{ site.documentation }}
+                </td>
+                <td>
+                    {{ site.access }}
+                </td>
+                <td>
+                    {{ site.categorie }}
+                </td>
+                <td>
+                    {{ site.img }}
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="{{ app.request.basepath }}/admin/sites/delete/{{ site.id }}"><i class="icon-trash icon-white"></i></a>
+                    <a class="btn btn-warning" href="{{ app.request.basepath }}/admin/sites/edit/{{ site.id }}"><i class="icon-pencil icon-white"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{%endblock%}

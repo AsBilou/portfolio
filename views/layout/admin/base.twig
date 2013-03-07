@@ -62,8 +62,35 @@
                                 <li><a href="{{ path('CV_interests_add') }}">Ajout intétêt</a></li>
                             </ul>
                         </li>
-                        <li><a href="#about"></a></li>
-                        <li><a href="#contact"></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contenus<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-header">Sites</li>
+                                <li><a href="{{ path('admin_sites') }}">Afficher sites</a></li>
+                                <li><a href="{{ path('admin_sites_add') }}">Ajout d'un site</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header">Application</li>
+                                <li><a href="{{ path('CV_diplome') }}">Afficher applications</a></li>
+                                <li><a href="{{ path('CV_diplome_add') }}">Ajout application</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header">Projet</li>
+                                <li><a href="{{ path('CV_diplome') }}">Afficher projets</a></li>
+                                <li><a href="{{ path('CV_diplome_add') }}">Ajout projet</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestion fichiers<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-header">Images contenus</li>
+                                <li><a href="{{ path('CV_Studies') }}">Afficher images</a></li>
+                                <li><a href="{{ path('CV_Add_Studies') }}">Ajout image</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header">Documentation contenus</li>
+                                <li><a href="{{ path('CV_diplome') }}">Afficher doc</a></li>
+                                <li><a href="{{ path('CV_diplome_add') }}">Ajout doc</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ path('CV_diplome_add') }}">Informations</a></li>
                     </ul>
                     <p class="navbar-text pull-right">
                         <a href="{{ path('admin_logout') }}" class="navbar-link">Deconnexion</a>

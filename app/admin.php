@@ -449,14 +449,6 @@ $app->get('/admin/cv/formations/delete/{id}', function ($id) use ($app) {
 
 });
 
-
-
-
-
-
-
-
-
 $app->get('/admin/cv/interests', function () use ($app) {
     $interests = PortfolioInterestQuery::create()->find();
 
@@ -508,6 +500,70 @@ $app->match('/admin/cv/interests/add', function (Request $request) use ($app) {
 })->bind('CV_interests_add');
 
 $app->get('/admin/cv/interests/delete/{id}', function ($id) use ($app) {
+
+    $skill = PortfolioSkillsQuery::create()->filterById($id)->find();
+    $skill->delete();
+
+    return $app->redirect($app['url_generator']->generate('admin_ok'));
+
+});
+
+
+
+
+
+
+$app->get('/admin/sites', function () use ($app) {
+    $sites = PortfolioArticleQuery::create()->filterByCategorie(1)->orderById()->find();
+
+    return $app['twig']->render('template/admin/sites.twig', array(
+        'sites'=>$sites,
+    ));
+
+})->bind('admin_sites');
+
+$app->match('/admin/sites/add', function (Request $request) use ($app) {
+
+    $form = $app['form.factory']->createBuilder('form')
+        ->add('type','text',array(
+        'label'=>'Type',
+        'required'=>true,
+        'attr'=>array('class'=>'','placeholder'=>'Informatique'),
+        'constraints'=>array(
+            new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
+        )
+    ))
+        ->add('description','textarea',array(
+        'label'=>'Description',
+        'required'=>true,
+        'attr'=>array('class'=>'','rows'=>'5'),
+        'constraints'=>array(
+            new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
+        )
+    ))
+        ->getForm();
+
+    if('POST'==$request->getMethod()){
+        $form->bind($request);
+        if($form->isValid()){
+            $data = $form->getData();
+
+            $interest = new PortfolioInterest();
+            $interest->setType($data['type']);
+            $interest->setDescription($data['description']);
+            $interest->save();
+
+            return $app->redirect($app['url_generator']->generate('admin_ok'));
+        }
+    }
+
+    return $app['twig']->render('template/admin/interests_add.twig', array(
+        'form'=>$form->createView(),
+    ));
+
+})->bind('admin_sites_add');
+
+$app->get('/admin/sites/delete/{id}', function ($id) use ($app) {
 
     $skill = PortfolioSkillsQuery::create()->filterById($id)->find();
     $skill->delete();
