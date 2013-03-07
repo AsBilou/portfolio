@@ -6,7 +6,7 @@
     {% for site in sites %}
     <div class="well">
         <h2>{{ site.nom }}</h2>
-        <a href="http://romainbellina.fr/{{ site.access }}" title="cliquez pour acceder au site"><img src="{{ app.request.basepath }}/../files/img/{{ site.img }}"/></a>
+        <a href="http://romainbellina.fr/{{ site.access }}" title="cliquez pour acceder au site"><img src="{{ app.request.basepath }}/../files/img/contenus/{{ site.img }}"/></a>
         <table class="table ">
             <tbody>
                 <tr>
@@ -46,7 +46,7 @@
                         Description
                     </th>
                     <td>
-                        {{ site.description }}
+                        {{ site.description|raw }}
                     </td>
                 </tr>
                 <tr>

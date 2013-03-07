@@ -247,7 +247,7 @@ $app->match('/admin/cv/company/add', function (Request $request) use ($app) {
         ->add('description','textarea',array(
         'label'=>'Description',
         'required'=>true,
-        'attr'=>array('rows'=>'5','class'=>''),
+        'attr'=>array('class'=>'span10','rows'=>'15'),
         'constraints'=>array(
             new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
         )
@@ -336,7 +336,7 @@ $app->match('/admin/cv/skills/add', function (Request $request) use ($app) {
         ->add('description','textarea',array(
         'label'=>'Description',
         'required'=>true,
-        'attr'=>array('class'=>'','rows'=>'5'),
+        'attr'=>array('class'=>'span10','rows'=>'15'),
         'constraints'=>array(
             new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
         )
@@ -472,7 +472,7 @@ $app->match('/admin/cv/interests/add', function (Request $request) use ($app) {
         ->add('description','textarea',array(
         'label'=>'Description',
         'required'=>true,
-        'attr'=>array('class'=>'','rows'=>'5'),
+        'attr'=>array('class'=>'span10','rows'=>'15'),
         'constraints'=>array(
             new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
         )
@@ -534,13 +534,13 @@ $app->match('/admin/sites/add', function (Request $request) use ($app) {
         )
     ))
         ->add('description','textarea',array(
-        'label'=>'Description',
-        'required'=>true,
-        'attr'=>array('class'=>'','rows'=>'5'),
-        'constraints'=>array(
-            new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
-        )
-    ))
+            'label'=>'Description',
+            'required'=>true,
+            'attr'=>array('class'=>'span10','rows'=>'15'),
+            'constraints'=>array(
+                new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
+            )
+        ))
         ->getForm();
 
     if('POST'==$request->getMethod()){

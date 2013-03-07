@@ -6,3 +6,13 @@
         <input class="btn btn-primary" type="submit" value="Ajouter">
     </form>
 {%endblock%}
+{% block javascript %}
+    <script src="{{ app.request.basepath }}/js/tiny_mce/tiny_mce.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            tinyMCE.init({
+                mode : "textareas"
+            });
+        });
+    </script>
+{% endblock %}

@@ -28,7 +28,7 @@
                     {{ skill.type }}
                 </td>
                 <td>
-                    {{ skill.description }}
+                    {{ skill.description|raw }}
                 </td>
                 <td>
                     <a class="btn btn-danger" href="{{ app.request.basepath }}/admin/cv/skills/delete/{{ skill.id }}"><i class="icon-trash icon-white"></i></a>
