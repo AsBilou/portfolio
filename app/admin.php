@@ -8,6 +8,8 @@
  */
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -588,6 +590,23 @@ $app->get('/admin/ko', function() use ($app){
     return $app['twig']->render('template/admin/ko.twig', array(
     ));
 })->bind('admin_ko');
+
+
+$app->error(function (\Exception $e, $code) use ($app) {
+    if($app['debug']) {
+        return;
+    }
+    switch ($code) {
+        case 404:
+            //return $app->redirect($app['url_generator']->generate('404'));
+            return new Response( $app['twig']->render('template/404.twig'), 404);
+            break;
+        default:
+            $message = 'We are sorry, but something went terribly wrong.';
+    }
+
+    return new Response($message);
+});
 
 return $app;
 
