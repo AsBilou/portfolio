@@ -134,5 +134,21 @@ CREATE TABLE `portfolio_interest`
     PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;
 
+-- ---------------------------------------------------------------------
+-- portfolio_admin
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `portfolio_admin`;
+
+CREATE TABLE `portfolio_admin`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `login` VARCHAR(45) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
+    `password` VARCHAR(100) NOT NULL,
+    `role` VARCHAR(100) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

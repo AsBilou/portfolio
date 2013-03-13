@@ -41,9 +41,10 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
             'pattern' => '^/admin',
             'http' => true,
             'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check'),
-            'users' => array(
-                'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='),
-            ),
+            'users' => $app->share(function() use ($app) {
+                // La classe App\User\UserProvider est spécifique à notre application et est décrite plus bas
+                return new App\User\UserProvider($app);
+            }),
             'logout' => array('logout_path' => '/admin/logout',),
         ),
     )));

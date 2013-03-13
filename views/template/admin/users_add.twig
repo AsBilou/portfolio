@@ -1,0 +1,8 @@
+{%extends 'layout/admin/base.twig'%}
+{%block content%}
+    <legend>Ajout d'un administrateur</legend>
+    <form id="form" novalidate action="{{ path('admin_users_add') }}" method="post">
+        {{ form_widget(form) }}
+        <input class="btn btn-primary" type="submit" value="Ajouter">
+    </form>
+{%endblock%}

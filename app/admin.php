@@ -671,6 +671,84 @@ $app->get('/admin/sites/edit/{id}', function ($id) use ($app) {
 
 
 
+$app->match('/admin/users/add', function (Request $request) use ($app) {
+
+    //Création du token de l'utilisateur
+    $token = $app['security']->getToken();
+    if (null !== $token) {
+        $user = $token->getUser();
+    }
+
+    $form = $app['form.factory']->createBuilder('form')
+        ->add('login','text',array(
+        'label'=>'Identifiant',
+        'required'=>true,
+        'attr'=>array('class'=>'','placeholder'=>'Admin'),
+        'constraints'=>array(
+            new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
+        )
+    ))
+        ->add('email','text',array(
+        'label'=>'Adresse mail',
+        'required'=>true,
+        'attr'=>array('class'=>'','placeholder'=>'pierre@pierre.fr'),
+        'constraints'=>array(
+            new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
+        )
+    ))
+        ->add('password','password',array(
+        'label'=>'Langage utilisé',
+        'required'=>true,
+        'attr'=>array('class'=>'','placeholder'=>'Mot de passe'),
+        'constraints'=>array(
+            new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
+        )
+    ))
+        ->add('verif_pass','password',array(
+        'label'=>'Vérification',
+        'required'=>true,
+        'attr' => array('placeholder' => 'Vérification'),
+        'constraints'=>array(
+            new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
+        )
+    ))
+        ->getForm();
+
+    if('POST'==$request->getMethod()){
+
+        $form->bind($request);
+
+        if($form->isValid()){
+            $data = $form->getData();
+            if($data['password']==$data['verif_pass']){
+                // find the encoder for a UserInterface instance
+                $encoder = $app['security.encoder_factory']->getEncoder($user);
+                // compute the encoded password for foo
+                $password = $encoder->encodePassword($data['password'], $user->getSalt());
+                //Création d'un nouvel utilisateur
+                $admin = new PortfolioAdmin();
+                $admin->setLogin($data['login']);
+                $admin->setEmail($data['email']);
+                $admin->setPassword($password);
+                $role = array();
+                array_push($role,"ROLE_ADMIN");
+                $serializeData = serialize($role);
+                $admin->setRole($serializeData);
+                $admin->save();
+
+                return $app->redirect($app['url_generator']->generate('admin_ok'));
+            }
+            return $app->redirect($app['url_generator']->generate('admin_ko'));
+        }
+    }
+
+    return $app['twig']->render('template/admin/users_add.twig', array(
+        'form'=>$form->createView(),
+    ));
+
+})->bind('admin_users_add');
+
+
 
 $app->get('/admin/ok', function() use ($app){
     return $app['twig']->render('template/admin/ok.twig', array(
