@@ -1,5 +1,5 @@
 {
-    "hash": "dd1d28e1ed8be3604c68202e9f6a7c9b",
+    "hash": "11356ec5d9016638231cd0f147bb3b3b",
     "packages": [
         {
             "name": "phing/phing",
@@ -802,12 +802,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/TwigBridge.git",
-                "reference": "6f55de4b975c6bafff3265d3f098d10d596dc6a2"
+                "reference": "c40d47f78299975ee1d6090e5fd1e1d89d9fef05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/TwigBridge/zipball/6f55de4b975c6bafff3265d3f098d10d596dc6a2",
-                "reference": "6f55de4b975c6bafff3265d3f098d10d596dc6a2",
+                "url": "https://api.github.com/repos/symfony/TwigBridge/zipball/c40d47f78299975ee1d6090e5fd1e1d89d9fef05",
+                "reference": "c40d47f78299975ee1d6090e5fd1e1d89d9fef05",
                 "shasum": ""
             },
             "require": {
@@ -852,7 +852,7 @@
             ],
             "description": "Symfony Twig Bridge",
             "homepage": "http://symfony.com",
-            "time": "2013-03-12 17:03:08"
+            "time": "2013-03-13 13:31:33"
         },
         {
             "name": "symfony/validator",

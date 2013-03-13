@@ -12,5 +12,10 @@
         "propel/propel-service-provider": "dev-master",
         "symfony/security": "2.1.*"
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "App": "app/src/"
+        }
+    }
 }
