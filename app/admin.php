@@ -7,6 +7,11 @@
  * To change this template use File | Settings | File Templates.
  */
 
+/*
+ * TODO : Ajouter bouton dans le site principal permetant l'accées a l'administration directement
+ *
+ * */
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
