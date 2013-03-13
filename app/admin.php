@@ -136,6 +136,22 @@ $app->match('/admin/cv/studies/add', function (Request $request) use ($app) {
 
 $app->get('/admin/cv/studies/delete/{id}', function ($id) use ($app) {
 
+    $studie = PortfolioEtudeQuery::create()
+        ->filterById($id)
+        ->findOne();
+
+    if($studie){
+        $studie->delete();
+        return $app->redirect($app['url_generator']->generate('admin_ok'));
+    }
+    else{
+
+        return $app->redirect($app['url_generator']->generate('admin_ko'));
+    }
+});
+
+$app->get('/admin/cv/studies/delete/{id}', function ($id) use ($app) {
+
     $studie = PortfolioEtudeQuery::create()->filterById($id)->find();
     $studie->delete();
 
@@ -510,11 +526,6 @@ $app->get('/admin/cv/interests/delete/{id}', function ($id) use ($app) {
 
 });
 
-
-
-
-
-
 $app->get('/admin/sites', function () use ($app) {
     $sites = PortfolioArticleQuery::create()->filterByCategorie(1)->orderById()->find();
 
@@ -524,13 +535,60 @@ $app->get('/admin/sites', function () use ($app) {
 
 })->bind('admin_sites');
 
+
+
+
+
+
+
+
 $app->match('/admin/sites/add', function (Request $request) use ($app) {
+    //Recupere le contenu du dossier contenant les images du carousel
+    $MyDirectory = opendir('../files/img/contenus/') or die('Erreur');
+    $arrayPictures = array();
+    while($Entry = readdir($MyDirectory)) {
+        if($Entry != '.' && $Entry != '..' && $Entry != '.DS_Store' && !is_dir($MyDirectory.$Entry)){
+            array_push($arrayPictures,$Entry);
+        }
+    }
+
+    $MyDirectory = opendir('../files/pdf/') or die('Erreur');
+    $arrayPdf = array();
+    while($Entry = readdir($MyDirectory)) {
+        if($Entry != '.' && $Entry != '..' && $Entry != '.DS_Store' && !is_dir($MyDirectory.$Entry)){
+            array_push($arrayPdf,$Entry);
+        }
+    }
 
     $form = $app['form.factory']->createBuilder('form')
+        ->add('nom','text',array(
+        'label'=>'Nom du site',
+        'required'=>true,
+        'attr'=>array('class'=>'','placeholder'=>'Portfolio'),
+        'constraints'=>array(
+            new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
+        )
+    ))
         ->add('type','text',array(
         'label'=>'Type',
         'required'=>true,
-        'attr'=>array('class'=>'','placeholder'=>'Informatique'),
+        'attr'=>array('class'=>'','placeholder'=>'Communautaire'),
+        'constraints'=>array(
+            new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
+        )
+    ))
+        ->add('language','text',array(
+        'label'=>'Langage utilisé',
+        'required'=>true,
+        'attr'=>array('class'=>'','placeholder'=>'PHP'),
+        'constraints'=>array(
+            new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
+        )
+    ))
+        ->add('materiel','text',array(
+        'label'=>'Matériel nécessaire',
+        'required'=>true,
+        'attr'=>array('class'=>'','placeholder'=>'Serveur web'),
         'constraints'=>array(
             new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
         )
@@ -543,36 +601,69 @@ $app->match('/admin/sites/add', function (Request $request) use ($app) {
                 new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
             )
         ))
+        ->add('access','text',array(
+        'label'=>'Url d\'accès',
+        'required'=>false,
+        'attr'=>array('class'=>'','placeholder'=>'/sport'),
+        'constraints'=>array(
+            new Assert\NotBlank(array('message' => 'Don\'t leave blank')),
+        )
+    ))
         ->getForm();
 
     if('POST'==$request->getMethod()){
+        //recuperation des images selectionnées et envoyées en POST
+        $selectedPicture = $_POST['e1'];
+        $selectedPdf = $_POST['e2'];
+
+        print_r($selectedPicture);
+        print_r($selectedPdf);
+        print_r($_POST);
+
         $form->bind($request);
         if($form->isValid()){
             $data = $form->getData();
 
-            $interest = new PortfolioInterest();
-            $interest->setType($data['type']);
-            $interest->setDescription($data['description']);
-            $interest->save();
 
-            return $app->redirect($app['url_generator']->generate('admin_ok'));
+
+            //return $app->redirect($app['url_generator']->generate('admin_ok'));
         }
     }
 
-    return $app['twig']->render('template/admin/interests_add.twig', array(
+    return $app['twig']->render('template/admin/sites_add.twig', array(
         'form'=>$form->createView(),
+        'pictures'=>$arrayPictures,
+        'pdfs'=>$arrayPdf,
     ));
 
 })->bind('admin_sites_add');
 
 $app->get('/admin/sites/delete/{id}', function ($id) use ($app) {
 
-    $skill = PortfolioSkillsQuery::create()->filterById($id)->find();
-    $skill->delete();
+    $sites = PortfolioArticleQuery::create()->filterById($id)->filterByCategorie(1)->findOne();
 
-    return $app->redirect($app['url_generator']->generate('admin_ok'));
-
+    if($sites){
+        $sites->delete();
+        return $app->redirect($app['url_generator']->generate('admin_ok'));
+    }
+    else{
+        return $app->redirect($app['url_generator']->generate('admin_ko'));
+    }
 });
+
+$app->get('/admin/sites/edit/{id}', function ($id) use ($app) {
+
+    $sites = PortfolioArticleQuery::create()->filterById($id)->filterByCategorie(1)->findOne();
+
+    if($sites){
+        //$sites->delete();
+        return $app->redirect($app['url_generator']->generate('admin_ok'));
+    }
+    else{
+        return $app->redirect($app['url_generator']->generate('admin_ko'));
+    }
+});
+
 
 
 

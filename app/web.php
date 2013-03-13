@@ -61,6 +61,14 @@ $app->get('/contact', function () use ($app) {
 
 })->bind('site_contact');
 
+$app->get('/404', function () use ($app) {
+
+    return $app['twig']->render('template/404.twig', array(
+
+    ));
+
+})->bind('404');
+
 return $app;
 
 ?>

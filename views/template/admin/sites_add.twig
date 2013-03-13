@@ -4,12 +4,19 @@
 {% endblock %}
 {%block content%}
     <legend>Ajout un nouveau site</legend>
-    <form id="formEn" novalidate action="{{ path('admin_sites_add') }}" method="post">
+    <form id="form" novalidate action="{{ path('admin_sites_add') }}" method="post">
         {{ form_widget(form) }}
-        <select id="e1" multiple="multiple" class="span5">
+        <select id="e1" name="e1" multiple="multiple" class="span5">
             {% set counter = 0 %}
             {% for picture in pictures %}
                 <option id="{{ counter }}" value="{{ picture }}">{{ picture }}</option>
+                {% set counter = counter +1 %}
+            {% endfor %}
+        </select>
+        <select id="e2" name="e2" multiple="multiple" class="span5">
+            {% set counter = 0 %}
+            {% for pdf in pdfs %}
+                <option id="{{ counter }}" value="{{ pdf }}">{{ pdf }}</option>
                 {% set counter = counter +1 %}
             {% endfor %}
         </select>
@@ -25,6 +32,7 @@
         $(document).ready(function() {
 
             $("#e1").select2({ maximumSelectionSize: 1 });
+            $("#e2").select2({ maximumSelectionSize: 1 });
 
             $('#submitCar').on('click', function(e){
                 // We don't want this to act as a link so cancel the link action
